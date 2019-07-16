@@ -1,5 +1,5 @@
 {
-  "name": "appExpressMongo",
+  "name": "app_express_mongo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,10 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.0.0",
+    "ejs": "^2.6.2",
     "express": "^4.17.1",
+    "http-errors": "^1.7.3",
     "mongoose": "^5.6.4"
   },
   "devDependencies": {
+    "morgan": "^1.9.1",
     "nodemon": "^1.19.1"
   }
 }
