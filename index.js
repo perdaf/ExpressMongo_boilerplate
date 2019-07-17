@@ -2,27 +2,29 @@ const createError = require("http-errors");
 const express = require("express");
 const logger = require("morgan");
 const path = require("path");
-const mongoose = require("mongoose");
+const connectDb = require("./config/db");
+
+require("dotenv").config();
 
 const app = express();
 
+// connect to mongoDB
+connectDb();
+
+// views folder and view engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 const routes = require("./routes/routes");
 
-require("dotenv").config();
+// define the PORT
 const PORT = process.env.NODE_ENV == "development" ? 3000 : process.env.PORT;
 
+// middleware
 app.use(logger("combined"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-mongoose
-  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
-  .then(() => console.log("Connected to mongoDB"))
-  .catch(err => console.log(err));
-
+// use routes folder
 app.use("/api", routes);
 
 // catch 404 and forward to error handler
