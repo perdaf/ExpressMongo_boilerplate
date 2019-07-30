@@ -14,7 +14,10 @@ connectDb();
 // views folder and view engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-const routes = require("./routes/routes");
+
+//define routes
+const index = require("./routes/index");
+const users = require("./routes/users");
 
 // define the PORT
 const PORT = process.env.NODE_ENV == "development" ? 3000 : process.env.PORT;
@@ -25,7 +28,8 @@ app.use(express.json({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // use routes folder
-app.use("/api", routes);
+app.use("/", index);
+app.use("/api/users", users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

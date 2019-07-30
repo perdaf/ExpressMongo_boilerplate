@@ -9,4 +9,4 @@ docker-compose up -d let you run in background
 
 - [ ] Add schema for mongo data
 - [ ] create static pages (error 404, etc...)
-- [ ] tester la bdd et la localisation des fichiers (./data/db:/data/db)
+- [x] tester la bdd et la localisation des fichiers (./data/db:/data/db)
